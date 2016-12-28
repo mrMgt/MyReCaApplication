@@ -1,5 +1,6 @@
 package com.example.myreca.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -187,5 +188,10 @@ public class MainActivity extends AppCompatActivity {
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    public void GoToWords(View view) {
+        Intent intent = new Intent(this, TuVungActivity.class);
+        startActivity(intent);
     }
 }

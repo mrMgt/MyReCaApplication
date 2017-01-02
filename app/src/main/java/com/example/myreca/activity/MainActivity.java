@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.myreca.adapter.AlbumsAdapter;
 import com.example.myreca.model.Album;
+import com.example.myreca.model.ChuongTrinhHoc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -192,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void GoToWords(View view) {
         Intent intent = new Intent(this, TuVungActivity.class);
+        startActivity(intent);
+    }
+
+    public void GoToLessons(View view) {
+        Intent intent = new Intent(this, ChuongTrinhHocActivity.class);
         startActivity(intent);
     }
 }

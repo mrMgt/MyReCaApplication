@@ -1,14 +1,17 @@
 package com.example.myreca.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.myreca.R;
 import com.example.myreca.adapter.AlbumsAdapter;
 import com.example.myreca.adapter.TuVungAdapter;
+import com.example.myreca.helper.VocabularyDBHelper;
 import com.example.myreca.model.Album;
 import com.example.myreca.model.TuVung;
 
@@ -25,6 +28,10 @@ public class TuVungActivity extends AppCompatActivity {
     private List<TuVung> tuVungList;
     private TuVungAdapter adapter;
     private TuVung tv;
+    Intent intent;
+    String baihocso = "";
+    String TAG = "TuVungActivity";
+    VocabularyDBHelper vocabularyDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,12 @@ public class TuVungActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+        intent = getIntent();
+        baihocso = intent.getStringExtra("baihocso");
+        Log.i(TAG, baihocso);
         prepareTuvungs();
+        //call data
+        showData(baihocso);
     }
 
     private void prepareTuvungs() {
@@ -65,5 +77,16 @@ public class TuVungActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
+    }
+
+    private void showData(String baihocso) {
+        vocabularyDBHelper = new VocabularyDBHelper(this);
+        List<TuVung> vocabularies = vocabularyDBHelper.getAllVocabularyByLessonNo(baihocso);
+        if (vocabularies.size() > 0) {
+            for (TuVung item : vocabularies) {
+                tuVungList.add(item);
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 }

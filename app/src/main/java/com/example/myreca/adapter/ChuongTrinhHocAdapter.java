@@ -82,7 +82,7 @@ public class ChuongTrinhHocAdapter  extends RecyclerView.Adapter<ChuongTrinhHocA
 
     public void gotoTuVung(View view, int position) {
         Intent intent = new Intent(mContext, TuVungActivity.class);
-        intent.putExtra("baihocso",chuongTrinhHocs.get(position).getBaihocso());
+        intent.putExtra("lessonid",chuongTrinhHocs.get(position).getId()+"");
         mContext.startActivity(intent);
     }
 }

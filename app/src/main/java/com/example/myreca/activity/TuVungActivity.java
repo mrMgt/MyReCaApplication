@@ -11,6 +11,7 @@ import android.util.Log;
 import com.example.myreca.R;
 import com.example.myreca.adapter.AlbumsAdapter;
 import com.example.myreca.adapter.TuVungAdapter;
+import com.example.myreca.helper.DBHelper;
 import com.example.myreca.helper.VocabularyDBHelper;
 import com.example.myreca.model.Album;
 import com.example.myreca.model.TuVung;
@@ -29,9 +30,9 @@ public class TuVungActivity extends AppCompatActivity {
     private TuVungAdapter adapter;
     private TuVung tv;
     Intent intent;
-    String baihocso = "";
+    String lessonId = "";
     String TAG = "TuVungActivity";
-    VocabularyDBHelper vocabularyDBHelper;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +51,11 @@ public class TuVungActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         intent = getIntent();
-        baihocso = intent.getStringExtra("baihocso");
-        Log.i(TAG, baihocso);
-        prepareTuvungs();
+        lessonId = intent.getStringExtra("lessonid");
+        Log.i(TAG, lessonId);
+//        prepareTuvungs();
         //call data
-        showData(baihocso);
+        showData(lessonId);
     }
 
     private void prepareTuvungs() {
@@ -79,9 +80,9 @@ public class TuVungActivity extends AppCompatActivity {
 
     }
 
-    private void showData(String baihocso) {
-        vocabularyDBHelper = new VocabularyDBHelper(this);
-        List<TuVung> vocabularies = vocabularyDBHelper.getAllVocabularyByLessonNo(baihocso);
+    private void showData(String lessonNo) {
+        dbHelper = new DBHelper(this);
+        List<TuVung> vocabularies = dbHelper.getVocabularysByLessonNo(lessonNo);
         if (vocabularies.size() > 0) {
             for (TuVung item : vocabularies) {
                 tuVungList.add(item);

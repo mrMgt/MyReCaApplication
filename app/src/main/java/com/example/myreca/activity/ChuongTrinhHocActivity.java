@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.myreca.R;
 import com.example.myreca.adapter.ChuongTrinhHocAdapter;
 import com.example.myreca.helper.ChuongTrinhHocDBHelper;
+import com.example.myreca.helper.DBHelper;
 import com.example.myreca.model.ChuongTrinhHoc;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class ChuongTrinhHocActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<ChuongTrinhHoc> chuongTrinhHocList;
     private ChuongTrinhHocAdapter adapter;
-    private ChuongTrinhHocDBHelper trinhHocDBHelper;
+    private DBHelper dbHelper;
 
 
     @Override
@@ -135,9 +136,9 @@ public class ChuongTrinhHocActivity extends AppCompatActivity {
 
     private void showData() {
         List<ChuongTrinhHoc> result = null;
-        trinhHocDBHelper = new ChuongTrinhHocDBHelper(this);
+        dbHelper = new DBHelper(this);
 
-        result = trinhHocDBHelper.getAllChuongTrinhHoc();
+        result = dbHelper.getAllLesson();
         if (result.size() > 0) {
             for (ChuongTrinhHoc item: result) {
                 chuongTrinhHocList.add(item);

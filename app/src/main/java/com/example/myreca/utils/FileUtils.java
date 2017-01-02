@@ -100,4 +100,33 @@ public class FileUtils {
         }
         return results;
     }
+
+
+    public static List<String> settingData(Context ct) {
+        List<String> results = new ArrayList<>();
+
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(ct.getAssets().open("sqlData")));
+
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                results.add(mLine);
+            }
+        } catch (IOException e) {
+            //log the exception
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    //log the exception
+                    e.printStackTrace();
+                }
+            }
+        }
+        return results;
+    }
 }

@@ -67,6 +67,21 @@
         android:paddingRight="50dp"
         />
 
+    <Button
+        android:id="@+id/btnInfinityScroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnSettingData"
+        android:text="Infinity Scroll"
+        android:textSize="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        />
+
 
 
 

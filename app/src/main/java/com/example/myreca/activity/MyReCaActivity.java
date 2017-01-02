@@ -28,6 +28,7 @@ public class MyReCaActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnVocabulary;
     private Button btnImages;
     private Button btnSettingData;
+    private Button btnInfinityScroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,13 @@ public class MyReCaActivity extends AppCompatActivity implements View.OnClickLis
         btnVocabulary = (Button) findViewById(R.id.btnTuVung);
         btnImages = (Button) findViewById(R.id.btnLoadImage);
         btnSettingData = (Button) findViewById(R.id.btnSettingData);
+        btnInfinityScroll = (Button) findViewById(R.id.btnInfinityScroll);
 
         btnLesson.setOnClickListener(this);
         btnVocabulary.setOnClickListener(this);
         btnImages.setOnClickListener(this);
         btnSettingData.setOnClickListener(this);
+        btnInfinityScroll.setOnClickListener(this);
 
     }
 
@@ -63,6 +66,10 @@ public class MyReCaActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btnSettingData:
                 settingData();
+                break;
+            case R.id.btnInfinityScroll:
+                intent = new Intent(this, InfinityScrollActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
